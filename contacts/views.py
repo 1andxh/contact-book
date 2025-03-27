@@ -42,6 +42,12 @@ class ContactViewset(viewsets.ModelViewSet):
             all_contacts = self.queryset
             response = ContactSerializer(all_contacts, many=True)#many to serialize each item, queryset becomes a list
             return JsonResponse(response.data)
+
+    def search(request, contact_name):
+        contact_name = Contact.objects.get()
+        response=...
+
+
     
     def create(self,request):
         if request.method == 'POST':
