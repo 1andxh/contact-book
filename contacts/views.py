@@ -37,8 +37,8 @@ class ContactViewset(viewsets.ModelViewSet):
     def index(request):
         return JsonResponse({'message': 'My Contact Book'})
 
-    def view(self,request):
-        if request.method == 'GET':
+    def view(self):
+        # if request.method == 'GET':
             all_contacts = self.queryset
             response = ContactSerializer(all_contacts, many=True)#many to serialize each item, queryset becomes a list
             return JsonResponse(response.data)
@@ -46,9 +46,9 @@ class ContactViewset(viewsets.ModelViewSet):
     def create(self,request):
         if request.method == 'POST':
             new_contact = Contact.objects.create()
-            person.append(new_contact)
+            # person.append(new_contact)
             Contact.save(new_contact)
-            return JsonResponse(data=person, safe=False)#safe influences the outcomes of data
+            return JsonResponse(data=new_contact, safe=False)#safe influences the outcomes of data
 
     def delete(self,request):
         if request.method == "DELETE":
